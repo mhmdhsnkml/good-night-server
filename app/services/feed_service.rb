@@ -13,7 +13,7 @@ class FeedService < ApplicationService
       user_ids = user.followings.pluck(:followed_id)
       user_ids << user.id
 
-      sleep_records = SleepRecord.where(user_id: user_ids).from_week_ago.order_by_duration.page(params[:page]).per(params[:per_page])
+      sleep_records = SleepRecord.where(user_id: user_ids).clock_out_not_nil.from_week_ago.order_by_duration.page(params[:page]).per(params[:per_page])
 
       success_response('Feeds fetched successfully', {
         sleep_records: sleep_records,

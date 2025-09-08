@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_05_140023) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_08_141357) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_05_140023) do
     t.index ["duration_s"], name: "index_sleep_records_on_duration_s"
     t.index ["user_id", "clock_in"], name: "index_sleep_records_on_user_id_and_clock_in"
     t.index ["user_id", "clock_out"], name: "index_sleep_records_on_user_id_and_clock_out"
+    t.index ["user_id", "duration_s", "created_at"], name: "idx_sleep", where: "((clock_out IS NOT NULL) AND (duration_s IS NOT NULL))"
     t.index ["user_id"], name: "index_sleep_records_active_per_user", unique: true, where: "(clock_out IS NULL)"
     t.index ["user_id"], name: "index_sleep_records_on_user_id"
   end

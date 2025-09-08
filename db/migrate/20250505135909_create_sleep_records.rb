@@ -13,6 +13,8 @@ class CreateSleepRecords < ActiveRecord::Migration[7.1]
     add_index :sleep_records, [:user_id, :clock_out]
     add_index :sleep_records, :duration_s
     add_index :sleep_records, [:user_id, :created_at]
+
+    # this query used for check if the user has an active sleep record
     add_index :sleep_records, :user_id, name: 'index_sleep_records_active_per_user', unique: true, where: 'clock_out IS NULL'
   end
 end
