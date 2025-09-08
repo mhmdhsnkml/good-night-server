@@ -36,6 +36,7 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 
 gem 'active_model_serializers'
+gem 'dotenv-rails'
 gem 'dry-validation'
 gem 'kaminari'
 
@@ -45,7 +46,6 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
-  gem "dotenv-rails"
   gem 'byebug'
 end
 
